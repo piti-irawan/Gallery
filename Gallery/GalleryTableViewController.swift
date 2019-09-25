@@ -38,6 +38,7 @@ class GalleryTableViewController: UITableViewController, UITextFieldDelegate {
     
     @IBAction func editGalleryName(_ sender: UITapGestureRecognizer) {
         if sender.state == .ended {
+            updateGalleryName()
             let location = sender.location(in: tableView)
             if let indexPath = tableView.indexPathForRow(at: location) {
                 if indexPath.section == 0 {
@@ -159,11 +160,15 @@ class GalleryTableViewController: UITableViewController, UITextFieldDelegate {
     // MARK: - Text field delegate
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+        updateGalleryName()
+    }
+    
+    private func updateGalleryName() {
         if let cell = cellBeingEdited {
             if let indexPath = tableView.indexPath(for: cell) {
-                if let text = textField.text {
+                if let text = cell.textField.text {
                     galleries[indexPath.section][indexPath.row].name = text
-                    textField.isEnabled = false
+                    cell.textField.isEnabled = false
                     cellBeingEdited = nil
                 }
             }
