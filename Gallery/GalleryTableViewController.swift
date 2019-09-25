@@ -35,6 +35,20 @@ class GalleryTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    @IBAction func editGalleryName(_ sender: UITapGestureRecognizer) {
+        if sender.state == .ended {
+            let location = sender.location(in: tableView)
+            if let indexPath = tableView.indexPathForRow(at: location) {
+                if indexPath.section == 0 {
+                    if let cell = tableView.cellForRow(at: indexPath) as? TextFieldTableViewCell {
+                        cell.textField.isEnabled = true
+                        cell.textField.becomeFirstResponder()
+                    }
+                }
+            }
+        }
+    }
+    
     // MARK: - Table view delegate
 
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -44,6 +58,7 @@ class GalleryTableViewController: UITableViewController {
                 let data = self.galleries[1].remove(at: indexPath.row)
                 self.galleries[0].append(data)
                 tableView.moveRow(at: indexPath, to: IndexPath(row: self.galleries[0].count-1, section: 0))
+                tableView.reloadSections([1], with: .automatic)
                 completionHandler(true)
             })
             action.backgroundColor = .green
@@ -53,7 +68,23 @@ class GalleryTableViewController: UITableViewController {
             return nil
         }
     }
-
+    
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        if indexPath.section == 0 {
+            return indexPath
+        } else {
+            return nil
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        if indexPath.section == 0 {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -65,8 +96,10 @@ class GalleryTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath)
-        cell.textLabel?.text = galleries[indexPath.section][indexPath.row].name
+        let cell = tableView.dequeueReusableCell(withIdentifier: "textFieldTableViewCell", for: indexPath)
+        if let textFieldTableViewCell = cell as? TextFieldTableViewCell {
+            textFieldTableViewCell.textField.text = galleries[indexPath.section][indexPath.row].name
+        }
         return cell
     }
 
@@ -86,9 +119,11 @@ class GalleryTableViewController: UITableViewController {
                 let data = galleries[0].remove(at: indexPath.row)
                 galleries[1].append(data)
                 tableView.moveRow(at: indexPath, to: IndexPath(row: galleries[1].count-1, section: 1))
+                tableView.reloadSections([0], with: .automatic)
             } else {
                 galleries[indexPath.section].remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .fade)
+                tableView.reloadSections([1], with: .automatic)
             }
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -111,7 +146,7 @@ class GalleryTableViewController: UITableViewController {
     */
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 1 {
+        if section == 1 && galleries[1].count > 0  {
             return "Recently Deleted"
         } else {
             return nil
