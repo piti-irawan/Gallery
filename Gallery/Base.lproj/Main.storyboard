@@ -91,7 +91,7 @@
             </objects>
             <point key="canvasLocation" x="468" y="-26"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Gallery Table View Controller-->
         <scene sceneID="i7s-wJ-cQZ">
             <objects>
                 <tableViewController clearsSelectionOnViewWillAppear="NO" id="yT2-9L-5H0" customClass="GalleryTableViewController" customModule="Gallery" customModuleProvider="target" sceneMemberID="viewController">
@@ -126,7 +126,13 @@
                             <outlet property="delegate" destination="yT2-9L-5H0" id="3kL-Pb-4hj"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="Wep-ol-W5x"/>
+                    <navigationItem key="navigationItem" id="Wep-ol-W5x">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="hxn-x0-hmH">
+                            <connections>
+                                <action selector="createNewGallery:" destination="yT2-9L-5H0" id="XbD-V7-9nE"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zgj-BT-KiX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

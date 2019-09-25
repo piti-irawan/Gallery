@@ -9,11 +9,9 @@
 import UIKit
 
 class GalleryTableViewController: UITableViewController {
-
     private var galleries: [[(name: String, data: [(url: URL, aspectRatio: Double)])]] = [[("One", []), ("Two", []), ("Three", [])], []]
     private var lastSeguedToIndexPath: IndexPath?
     private var lastSeguedToGalleryCollectionViewController: GalleryCollectionViewController?
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +31,11 @@ class GalleryTableViewController: UITableViewController {
         }
     }
     */
+    
+    @IBAction func createNewGallery(_ sender: UIBarButtonItem) {
+        galleries[0] += [("Untitled".madeUnique(withRespectTo: galleries[0].map { $0.name }), [])]
+        tableView.reloadData()
+    }
     
     // MARK: - Table view delegate
 
