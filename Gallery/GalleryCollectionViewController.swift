@@ -117,13 +117,11 @@ class GalleryCollectionViewController: UICollectionViewController, UICollectionV
     }
     
     private func dragItems(at indexPath: IndexPath) -> [UIDragItem] {
-        let data = cellData[indexPath.item]
-        //if let data = (collectionView.cellForItem(at: indexPath) as? GalleryCollectionViewCell)?.data {
         let itemProvider = NSItemProvider()
         itemProvider.registerObject(NSURL(), visibility: .all)
         itemProvider.registerObject(UIImage(), visibility: .all)
         let dragItem = UIDragItem(itemProvider: itemProvider)
-        dragItem.localObject = data
+        dragItem.localObject = cellData[indexPath.item]
         return [dragItem]
     }
     
