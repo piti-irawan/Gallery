@@ -28,17 +28,15 @@ class GalleryCollectionViewController: UICollectionViewController, UICollectionV
         collectionView.dropDelegate = self
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+    @IBAction func zoom(_ sender: UIPinchGestureRecognizer) {
+        if sender.state == .began || sender.state == .changed {
+            cellWidth *= Double(sender.scale)
+            flowLayout?.invalidateLayout()
+            sender.scale = 1.0
+        }
     }
-    */
 
-    // MARK: UICollectionViewDataSource
+    // MARK: - UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -67,7 +65,7 @@ class GalleryCollectionViewController: UICollectionViewController, UICollectionV
         return cell
     }
 
-    // MARK: UICollectionViewDelegate
+    // MARK: - UICollectionViewDelegate
 
     /*
     // Uncomment this method to specify if the specified item should be highlighted during tracking
@@ -98,7 +96,7 @@ class GalleryCollectionViewController: UICollectionViewController, UICollectionV
     }
     */
     
-    // MARK: UICollectionViewDelegateFlowLayout
+    // MARK: - UICollectionViewDelegateFlowLayout
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
     {
@@ -125,7 +123,7 @@ class GalleryCollectionViewController: UICollectionViewController, UICollectionV
         return [dragItem]
     }
     
-    // MARK: UICollectionViewDropDelegate
+    // MARK: - UICollectionViewDropDelegate
     
     func collectionView(_ collectionView: UICollectionView, canHandle session: UIDropSession) -> Bool {
         return session.canLoadObjects(ofClass: NSURL.self) && session.canLoadObjects(ofClass: UIImage.self)
@@ -184,11 +182,31 @@ class GalleryCollectionViewController: UICollectionViewController, UICollectionV
         }
     }
 
-    @IBAction func zoom(_ sender: UIPinchGestureRecognizer) {
-        if sender.state == .began || sender.state == .changed {
-            cellWidth *= Double(sender.scale)
-            flowLayout?.invalidateLayout()
-            sender.scale = 1.0
+    // MARK: - Navigation
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if identifier == "showImageDetail" {
+            if let galleryCollectionViewCell = sender as? GalleryCollectionViewCell {
+                if galleryCollectionViewCell.imageView.image != nil {
+                    return true
+                }
+            }
+        }
+        return false
+    }
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using [segue destinationViewController].
+        // Pass the selected object to the new view controller.
+        if segue.identifier == "showImageDetail" {
+            if let galleryCollectionViewCell = sender as? GalleryCollectionViewCell {
+                if let image = galleryCollectionViewCell.imageView.image {
+                    if let galleryScrollViewController = segue.destination as? GalleryScrollViewController {
+                        galleryScrollViewController.image = image
+                    }
+                }
+            }
         }
     }
 }

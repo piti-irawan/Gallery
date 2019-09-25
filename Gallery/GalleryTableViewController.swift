@@ -52,43 +52,7 @@ class GalleryTableViewController: UITableViewController, UITextFieldDelegate {
         }
     }
     
-    // MARK: - Table view delegate
-
-    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        // Get current state from data source
-        if indexPath.section == 1 {
-            let action = UIContextualAction(style: .normal, title: "Undelete", handler: { [unowned self] (action, sourceView, completionHandler) in
-                let data = self.galleries[1].remove(at: indexPath.row)
-                self.galleries[0].append(data)
-                tableView.moveRow(at: indexPath, to: IndexPath(row: self.galleries[0].count-1, section: 0))
-                tableView.reloadSections([1], with: .automatic)
-                completionHandler(true)
-            })
-            action.backgroundColor = .green
-            let configuration = UISwipeActionsConfiguration(actions: [action])
-            return configuration
-        } else {
-            return nil
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        if indexPath.section == 0 {
-            return indexPath
-        } else {
-            return nil
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        if indexPath.section == 0 {
-            return true
-        } else {
-            return false
-        }
-    }
-    
-    // MARK: - Table view data source
+    // MARK: - UITableViewDataSource
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
@@ -157,7 +121,43 @@ class GalleryTableViewController: UITableViewController, UITextFieldDelegate {
         }
     }
     
-    // MARK: - Text field delegate
+    // MARK: - UITableViewDelegate
+    
+    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        // Get current state from data source
+        if indexPath.section == 1 {
+            let action = UIContextualAction(style: .normal, title: "Undelete", handler: { [unowned self] (action, sourceView, completionHandler) in
+                let data = self.galleries[1].remove(at: indexPath.row)
+                self.galleries[0].append(data)
+                tableView.moveRow(at: indexPath, to: IndexPath(row: self.galleries[0].count-1, section: 0))
+                tableView.reloadSections([1], with: .automatic)
+                completionHandler(true)
+            })
+            action.backgroundColor = .green
+            let configuration = UISwipeActionsConfiguration(actions: [action])
+            return configuration
+        } else {
+            return nil
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        if indexPath.section == 0 {
+            return indexPath
+        } else {
+            return nil
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        if indexPath.section == 0 {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    // MARK: - UITextFieldDelegate
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         updateGalleryName()
@@ -190,7 +190,7 @@ class GalleryTableViewController: UITableViewController, UITextFieldDelegate {
             if let tableViewCell = sender as? UITableViewCell {
                 if let indexPath = tableView.indexPath(for: tableViewCell) {
                     if indexPath.section == 0 {
-                        if let galleryCollectionViewController = segue.destination as? GalleryCollectionViewController {
+                        if let galleryCollectionViewController = (segue.destination as? UINavigationController)?.topViewController as? GalleryCollectionViewController {
                             galleryCollectionViewController.data = galleries[indexPath.section][indexPath.row].data
                         }
                     }
