@@ -8,20 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		468DF3F4233A945C005B92B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468DF3F3233A945C005B92B3 /* AppDelegate.swift */; };
-		468DF3F6233A945C005B92B3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468DF3F5233A945C005B92B3 /* ViewController.swift */; };
 		468DF3F9233A945C005B92B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 468DF3F7233A945C005B92B3 /* Main.storyboard */; };
 		468DF3FB233A945D005B92B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 468DF3FA233A945D005B92B3 /* Assets.xcassets */; };
 		468DF3FE233A945D005B92B3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 468DF3FC233A945D005B92B3 /* LaunchScreen.storyboard */; };
+		468DF406233A9651005B92B3 /* GalleryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468DF405233A9651005B92B3 /* GalleryCollectionViewController.swift */; };
+		468DF40A233A97E6005B92B3 /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468DF409233A97E6005B92B3 /* GalleryCollectionViewCell.swift */; };
+		468DF40E233AB242005B92B3 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468DF40D233AB242005B92B3 /* Utilities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		468DF3F0233A945C005B92B3 /* Gallery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gallery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		468DF3F3233A945C005B92B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		468DF3F5233A945C005B92B3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		468DF3F8233A945C005B92B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		468DF3FA233A945D005B92B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		468DF3FD233A945D005B92B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		468DF3FF233A945D005B92B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		468DF405233A9651005B92B3 /* GalleryCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewController.swift; sourceTree = "<group>"; };
+		468DF409233A97E6005B92B3 /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
+		468DF40D233AB242005B92B3 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,8 +59,10 @@
 			isa = PBXGroup;
 			children = (
 				468DF3F3233A945C005B92B3 /* AppDelegate.swift */,
-				468DF3F5233A945C005B92B3 /* ViewController.swift */,
 				468DF3F7233A945C005B92B3 /* Main.storyboard */,
+				468DF405233A9651005B92B3 /* GalleryCollectionViewController.swift */,
+				468DF409233A97E6005B92B3 /* GalleryCollectionViewCell.swift */,
+				468DF40D233AB242005B92B3 /* Utilities.swift */,
 				468DF3FA233A945D005B92B3 /* Assets.xcassets */,
 				468DF3FC233A945D005B92B3 /* LaunchScreen.storyboard */,
 				468DF3FF233A945D005B92B3 /* Info.plist */,
@@ -135,8 +141,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				468DF3F6233A945C005B92B3 /* ViewController.swift in Sources */,
 				468DF3F4233A945C005B92B3 /* AppDelegate.swift in Sources */,
+				468DF40A233A97E6005B92B3 /* GalleryCollectionViewCell.swift in Sources */,
+				468DF40E233AB242005B92B3 /* Utilities.swift in Sources */,
+				468DF406233A9651005B92B3 /* GalleryCollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
