@@ -102,22 +102,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="990.5" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hWg-KR-Bu8">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hWg-KR-Bu8">
                                 <rect key="frame" x="0.0" y="0.0" width="990.5" height="1024"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qPR-Qf-TJU">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qPR-Qf-TJU">
                                         <rect key="frame" x="0.0" y="0.0" width="990.5" height="1024"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" priority="250" constant="990.5" id="6lG-2v-dx1"/>
-                                    <constraint firstAttribute="height" priority="250" constant="1024" id="7hO-gL-yOS"/>
                                     <constraint firstItem="qPR-Qf-TJU" firstAttribute="top" secondItem="hWg-KR-Bu8" secondAttribute="top" id="NTV-dN-1W1"/>
-                                    <constraint firstItem="qPR-Qf-TJU" firstAttribute="centerX" secondItem="hWg-KR-Bu8" secondAttribute="centerX" id="Q3Y-IT-noH"/>
                                     <constraint firstAttribute="bottom" secondItem="qPR-Qf-TJU" secondAttribute="bottom" id="SQX-EV-tZN"/>
                                     <constraint firstAttribute="trailing" secondItem="qPR-Qf-TJU" secondAttribute="trailing" id="Vrq-Bn-rMC"/>
                                     <constraint firstItem="qPR-Qf-TJU" firstAttribute="leading" secondItem="hWg-KR-Bu8" secondAttribute="leading" id="ajb-8M-JU8"/>
-                                    <constraint firstItem="qPR-Qf-TJU" firstAttribute="centerY" secondItem="hWg-KR-Bu8" secondAttribute="centerY" id="pRZ-P2-Kz6"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -125,18 +121,18 @@
                         <constraints>
                             <constraint firstItem="hWg-KR-Bu8" firstAttribute="leading" secondItem="Dp2-Qn-PLg" secondAttribute="leading" id="70q-c3-vqb"/>
                             <constraint firstAttribute="bottom" secondItem="hWg-KR-Bu8" secondAttribute="bottom" id="Sx7-Ag-rIr"/>
-                            <constraint firstItem="hWg-KR-Bu8" firstAttribute="centerY" secondItem="Dp2-Qn-PLg" secondAttribute="centerY" id="mJ2-Xn-Sym"/>
                             <constraint firstItem="hWg-KR-Bu8" firstAttribute="top" secondItem="Dp2-Qn-PLg" secondAttribute="top" id="pkb-dZ-zEQ"/>
                             <constraint firstAttribute="trailing" secondItem="hWg-KR-Bu8" secondAttribute="trailing" id="uL3-xr-ENy"/>
-                            <constraint firstItem="hWg-KR-Bu8" firstAttribute="centerX" secondItem="Dp2-Qn-PLg" secondAttribute="centerX" id="vQS-kZ-B53"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="D8L-qb-bPa"/>
                     </view>
                     <connections>
+                        <outlet property="imageView" destination="qPR-Qf-TJU" id="CvW-ER-jWO"/>
+                        <outlet property="imageViewBottomConstraint" destination="SQX-EV-tZN" id="sAe-82-cQs"/>
+                        <outlet property="imageViewLeadingConstraint" destination="ajb-8M-JU8" id="zWL-2q-q1o"/>
+                        <outlet property="imageViewTopConstraint" destination="NTV-dN-1W1" id="wAF-x9-Hhl"/>
+                        <outlet property="imageViewTrailingConstraint" destination="Vrq-Bn-rMC" id="fkv-Ib-uSr"/>
                         <outlet property="scrollView" destination="hWg-KR-Bu8" id="2Q5-6x-ZYu"/>
-                        <outlet property="scrollViewHeight" destination="7hO-gL-yOS" id="GSa-GH-rgr"/>
-                        <outlet property="scrollViewWidth" destination="6lG-2v-dx1" id="gGd-bR-Xcw"/>
-                        <outlet property="viewForZooming" destination="qPR-Qf-TJU" id="CvW-ER-jWO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="inI-Kz-LrC" userLabel="First Responder" sceneMemberID="firstResponder"/>
