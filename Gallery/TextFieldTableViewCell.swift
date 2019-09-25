@@ -8,20 +8,6 @@
 
 import UIKit
 
-class TextFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
-    @IBOutlet weak var textField: UITextField! {
-        didSet {
-            textField.delegate = self
-        }
-    }
-
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        // Set galleries[section][row].
-        textField.isEnabled = false
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
+class TextFieldTableViewCell: UITableViewCell {
+    @IBOutlet weak var textField: UITextField!
 }

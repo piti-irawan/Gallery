@@ -8,8 +8,9 @@
 
 import UIKit
 
-class GalleryTableViewController: UITableViewController {
+class GalleryTableViewController: UITableViewController, UITextFieldDelegate {
     var galleries: [[(name: String, data: [(url: URL, aspectRatio: Double)])]] = [[("One", []), ("Two", []), ("Three", [])], []]
+    var cellBeingEdited: TextFieldTableViewCell?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +42,7 @@ class GalleryTableViewController: UITableViewController {
             if let indexPath = tableView.indexPathForRow(at: location) {
                 if indexPath.section == 0 {
                     if let cell = tableView.cellForRow(at: indexPath) as? TextFieldTableViewCell {
+                        cellBeingEdited = cell
                         cell.textField.isEnabled = true
                         cell.textField.becomeFirstResponder()
                     }
@@ -99,6 +101,7 @@ class GalleryTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "textFieldTableViewCell", for: indexPath)
         if let textFieldTableViewCell = cell as? TextFieldTableViewCell {
             textFieldTableViewCell.textField.text = galleries[indexPath.section][indexPath.row].name
+            textFieldTableViewCell.textField.delegate = self
         }
         return cell
     }
@@ -151,6 +154,25 @@ class GalleryTableViewController: UITableViewController {
         } else {
             return nil
         }
+    }
+    
+    // MARK: - Text field delegate
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if let cell = cellBeingEdited {
+            if let indexPath = tableView.indexPath(for: cell) {
+                if let text = textField.text {
+                    galleries[indexPath.section][indexPath.row].name = text
+                    textField.isEnabled = false
+                    cellBeingEdited = nil
+                }
+            }
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 
     // MARK: - Navigation

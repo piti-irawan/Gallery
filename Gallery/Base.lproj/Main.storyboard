@@ -123,7 +123,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="textField" destination="ea4-N2-0bl" id="bMP-w7-MyM"/>
+                                    <outlet property="textField" destination="ea4-N2-0bl" id="eUT-ug-qFt"/>
                                     <segue destination="daf-vw-uE6" kind="showDetail" identifier="chooseGallery" id="La2-Cc-tEo"/>
                                 </connections>
                             </tableViewCell>
