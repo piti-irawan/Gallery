@@ -9,8 +9,12 @@
 import UIKit
 
 class GalleryCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDragDelegate, UICollectionViewDropDelegate {
-    private static let cellWidth = 200.0
+    private var cellWidth = 200.0
     private var cellData = [(url: URL, aspectRatio: Double)]()
+
+    private var flowLayout: UICollectionViewFlowLayout? {
+        return collectionView?.collectionViewLayout as? UICollectionViewFlowLayout
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,7 +102,7 @@ class GalleryCollectionViewController: UICollectionViewController, UICollectionV
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
     {
-        return CGSize(width: GalleryCollectionViewController.cellWidth, height: GalleryCollectionViewController.cellWidth / cellData[indexPath.item].aspectRatio)
+        return CGSize(width: cellWidth, height: cellWidth / cellData[indexPath.item].aspectRatio)
     }
     
     // MARK: UICollectionViewDragDelegate
@@ -169,6 +173,14 @@ class GalleryCollectionViewController: UICollectionViewController, UICollectionV
                     }
                 }
             }
+        }
+    }
+
+    @IBAction func zoom(_ sender: UIPinchGestureRecognizer) {
+        if sender.state == .began || sender.state == .changed {
+            cellWidth *= Double(sender.scale)
+            flowLayout?.invalidateLayout()
+            sender.scale = 1.0
         }
     }
 }

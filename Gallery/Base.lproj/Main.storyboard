@@ -17,6 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vyc-Ks-A4Y">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -39,6 +40,7 @@
                                         </activityIndicatorView>
                                     </subviews>
                                 </view>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="cVL-XB-WS2" firstAttribute="leading" secondItem="hHg-NT-yDC" secondAttribute="leading" id="6aQ-zg-HLd"/>
                                     <constraint firstItem="cVL-XB-WS2" firstAttribute="centerY" secondItem="hHg-NT-yDC" secondAttribute="centerY" id="EO5-8D-1bU"/>
@@ -66,6 +68,7 @@
                                         </activityIndicatorView>
                                     </subviews>
                                 </view>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="eNa-I4-Y3f" firstAttribute="centerY" secondItem="sPx-92-CHB" secondAttribute="centerY" id="7G8-Dj-l6u"/>
                                     <constraint firstItem="eNa-I4-Y3f" firstAttribute="centerX" secondItem="sPx-92-CHB" secondAttribute="centerX" id="H5s-St-Dro"/>
@@ -76,10 +79,16 @@
                         <connections>
                             <outlet property="dataSource" destination="daf-vw-uE6" id="qNg-EY-ue7"/>
                             <outlet property="delegate" destination="daf-vw-uE6" id="YXh-7r-jBB"/>
+                            <outletCollection property="gestureRecognizers" destination="baE-6c-Pgu" appends="YES" id="45K-dB-YLk"/>
                         </connections>
                     </collectionView>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QNj-kQ-IoV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pinchGestureRecognizer id="baE-6c-Pgu">
+                    <connections>
+                        <action selector="zoom:" destination="daf-vw-uE6" id="gzM-Lm-Fa8"/>
+                    </connections>
+                </pinchGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-335.13909224011712" y="-469.33593749999994"/>
         </scene>
