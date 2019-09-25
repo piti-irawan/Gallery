@@ -10,7 +10,7 @@ import UIKit
 
 class GalleryCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDragDelegate, UICollectionViewDropDelegate {
     private var cellWidth = 200.0
-    private var cellData = [(url: URL, aspectRatio: Double)]()
+    var data = [(url: URL, aspectRatio: Double)]()
 
     private var flowLayout: UICollectionViewFlowLayout? {
         return collectionView?.collectionViewLayout as? UICollectionViewFlowLayout
@@ -45,21 +45,21 @@ class GalleryCollectionViewController: UICollectionViewController, UICollectionV
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cellData.count
+        return data.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GalleryCell", for: indexPath)
-        if let galleryCell = cell as? GalleryCollectionViewCell {
-            let data = cellData[indexPath.item]
-            galleryCell.spinner.startAnimating()
-            galleryCell.imageView.image = nil
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "galleryCollectionViewCell", for: indexPath)
+        if let galleryCollectionViewCell = cell as? GalleryCollectionViewCell {
+            let cellData = data[indexPath.item]
+            galleryCollectionViewCell.spinner.startAnimating()
+            galleryCollectionViewCell.imageView.image = nil
             DispatchQueue.global(qos: .userInitiated).async {
-                let urlContents = try? Data(contentsOf: data.url)
+                let urlContents = try? Data(contentsOf: cellData.url)
                 if let imageData = urlContents {
                     DispatchQueue.main.async {
-                        galleryCell.imageView.image = UIImage(data: imageData)
-                        galleryCell.spinner.stopAnimating()
+                        galleryCollectionViewCell.imageView.image = UIImage(data: imageData)
+                        galleryCollectionViewCell.spinner.stopAnimating()
                     }
                 }
             }
@@ -102,7 +102,7 @@ class GalleryCollectionViewController: UICollectionViewController, UICollectionV
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
     {
-        return CGSize(width: cellWidth, height: cellWidth / cellData[indexPath.item].aspectRatio)
+        return CGSize(width: cellWidth, height: cellWidth / data[indexPath.item].aspectRatio)
     }
     
     // MARK: UICollectionViewDragDelegate
@@ -121,7 +121,7 @@ class GalleryCollectionViewController: UICollectionViewController, UICollectionV
         itemProvider.registerObject(NSURL(), visibility: .all)
         itemProvider.registerObject(UIImage(), visibility: .all)
         let dragItem = UIDragItem(itemProvider: itemProvider)
-        dragItem.localObject = cellData[indexPath.item]
+        dragItem.localObject = data[indexPath.item]
         return [dragItem]
     }
     
@@ -140,10 +140,10 @@ class GalleryCollectionViewController: UICollectionViewController, UICollectionV
         let destinationIndexPath = coordinator.destinationIndexPath ?? IndexPath(item: 0, section: 0)
         for item in coordinator.items {
             if let sourceIndexPath = item.sourceIndexPath {
-                if let data = item.dragItem.localObject as? (URL, Double) {
+                if let cellData = item.dragItem.localObject as? (URL, Double) {
                     collectionView.performBatchUpdates({
-                        cellData.remove(at: sourceIndexPath.item)
-                        cellData.insert(data, at: destinationIndexPath.item)
+                        data.remove(at: sourceIndexPath.item)
+                        data.insert(cellData, at: destinationIndexPath.item)
                         collectionView.deleteItems(at: [sourceIndexPath])
                         collectionView.insertItems(at: [destinationIndexPath])
                     })
@@ -159,10 +159,10 @@ class GalleryCollectionViewController: UICollectionViewController, UICollectionV
                 item.dragItem.itemProvider.loadObject(ofClass: NSURL.self) { [weak self] (provider, error) in
                     if let aspectRatio = ratio {
                         DispatchQueue.main.async {
-                            let placeholderContext = coordinator.drop(item.dragItem, to: UICollectionViewDropPlaceholder(insertionIndexPath: destinationIndexPath, reuseIdentifier: "DropPlaceholderCell"))
+                            let placeholderContext = coordinator.drop(item.dragItem, to: UICollectionViewDropPlaceholder(insertionIndexPath: destinationIndexPath, reuseIdentifier: "placeholderCollectionViewCell"))
                             if let url = provider as? URL {
                                 placeholderContext.commitInsertion(dataSourceUpdates: { insertionIndexPath in
-                                    self?.cellData.insert((url.imageURL, Double(aspectRatio)), at: insertionIndexPath.item)
+                                    self?.data.insert((url.imageURL, Double(aspectRatio)), at: insertionIndexPath.item)
                                 })
                             } else {
                                 placeholderContext.deletePlaceholder()

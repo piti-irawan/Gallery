@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4602B127233B0F1C006C89DB /* GalleryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4602B126233B0F1C006C89DB /* GalleryTableViewController.swift */; };
 		468DF3F4233A945C005B92B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468DF3F3233A945C005B92B3 /* AppDelegate.swift */; };
 		468DF3F9233A945C005B92B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 468DF3F7233A945C005B92B3 /* Main.storyboard */; };
 		468DF3FB233A945D005B92B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 468DF3FA233A945D005B92B3 /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4602B126233B0F1C006C89DB /* GalleryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryTableViewController.swift; sourceTree = "<group>"; };
 		468DF3F0233A945C005B92B3 /* Gallery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gallery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		468DF3F3233A945C005B92B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		468DF3F8233A945C005B92B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 			children = (
 				468DF3F3233A945C005B92B3 /* AppDelegate.swift */,
 				468DF3F7233A945C005B92B3 /* Main.storyboard */,
+				4602B126233B0F1C006C89DB /* GalleryTableViewController.swift */,
 				468DF405233A9651005B92B3 /* GalleryCollectionViewController.swift */,
 				468DF409233A97E6005B92B3 /* GalleryCollectionViewCell.swift */,
 				468DF40D233AB242005B92B3 /* Utilities.swift */,
@@ -143,6 +146,7 @@
 			files = (
 				468DF3F4233A945C005B92B3 /* AppDelegate.swift in Sources */,
 				468DF40A233A97E6005B92B3 /* GalleryCollectionViewCell.swift in Sources */,
+				4602B127233B0F1C006C89DB /* GalleryTableViewController.swift in Sources */,
 				468DF40E233AB242005B92B3 /* Utilities.swift in Sources */,
 				468DF406233A9651005B92B3 /* GalleryCollectionViewController.swift in Sources */,
 			);

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="daf-vw-uE6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TEh-sC-kgE">
     <device id="ipad12_9rounded" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
@@ -14,66 +14,65 @@
             <objects>
                 <collectionViewController id="daf-vw-uE6" customClass="GalleryCollectionViewController" customModule="Gallery" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="ggF-dE-Wsn">
-                        <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="990.5" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vyc-Ks-A4Y">
-                            <size key="itemSize" width="50" height="50"/>
+                            <size key="itemSize" width="80" height="80"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GalleryCell" id="hHg-NT-yDC" customClass="GalleryCollectionViewCell" customModule="Gallery" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="galleryCollectionViewCell" id="hHg-NT-yDC" customClass="GalleryCollectionViewCell" customModule="Gallery" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cVL-XB-WS2">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                         </imageView>
                                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="uLQ-LO-Ia0">
-                                            <rect key="frame" x="15" y="15" width="20" height="20"/>
+                                            <rect key="frame" x="30" y="30" width="20" height="20"/>
                                         </activityIndicatorView>
                                     </subviews>
                                 </view>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstItem="cVL-XB-WS2" firstAttribute="leading" secondItem="hHg-NT-yDC" secondAttribute="leading" id="6aQ-zg-HLd"/>
-                                    <constraint firstItem="cVL-XB-WS2" firstAttribute="centerY" secondItem="hHg-NT-yDC" secondAttribute="centerY" id="EO5-8D-1bU"/>
-                                    <constraint firstItem="cVL-XB-WS2" firstAttribute="centerX" secondItem="hHg-NT-yDC" secondAttribute="centerX" id="Hei-8i-VQ9"/>
-                                    <constraint firstItem="uLQ-LO-Ia0" firstAttribute="centerY" secondItem="hHg-NT-yDC" secondAttribute="centerY" id="NRq-Py-zcW"/>
-                                    <constraint firstAttribute="trailing" secondItem="cVL-XB-WS2" secondAttribute="trailing" id="T5f-jr-rBS"/>
-                                    <constraint firstItem="uLQ-LO-Ia0" firstAttribute="centerX" secondItem="hHg-NT-yDC" secondAttribute="centerX" id="Wt9-jy-ZNx"/>
-                                    <constraint firstItem="cVL-XB-WS2" firstAttribute="top" secondItem="hHg-NT-yDC" secondAttribute="top" id="fG7-oa-KdE"/>
-                                    <constraint firstAttribute="bottom" secondItem="cVL-XB-WS2" secondAttribute="bottom" id="tgo-uT-AWc"/>
+                                    <constraint firstAttribute="trailing" secondItem="cVL-XB-WS2" secondAttribute="trailing" id="380-UL-rzF"/>
+                                    <constraint firstItem="cVL-XB-WS2" firstAttribute="top" secondItem="hHg-NT-yDC" secondAttribute="top" id="Fx4-gg-E4Y"/>
+                                    <constraint firstItem="cVL-XB-WS2" firstAttribute="leading" secondItem="hHg-NT-yDC" secondAttribute="leading" id="Lbc-I2-49V"/>
+                                    <constraint firstItem="cVL-XB-WS2" firstAttribute="centerY" secondItem="hHg-NT-yDC" secondAttribute="centerY" id="XW2-Xc-wW2"/>
+                                    <constraint firstItem="uLQ-LO-Ia0" firstAttribute="centerX" secondItem="hHg-NT-yDC" secondAttribute="centerX" id="b3P-Td-hL4"/>
+                                    <constraint firstAttribute="bottom" secondItem="cVL-XB-WS2" secondAttribute="bottom" id="rQq-Yc-Tu5"/>
+                                    <constraint firstItem="uLQ-LO-Ia0" firstAttribute="centerY" secondItem="hHg-NT-yDC" secondAttribute="centerY" id="yVl-hx-k5G"/>
+                                    <constraint firstItem="cVL-XB-WS2" firstAttribute="centerX" secondItem="hHg-NT-yDC" secondAttribute="centerX" id="znP-Yq-fuV"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="imageView" destination="cVL-XB-WS2" id="ts9-dQ-kdt"/>
                                     <outlet property="spinner" destination="uLQ-LO-Ia0" id="CxS-bu-a3e"/>
                                 </connections>
                             </collectionViewCell>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DropPlaceholderCell" id="sPx-92-CHB" customClass="GalleryCollectionViewCell" customModule="Gallery" customModuleProvider="target">
-                                <rect key="frame" x="62.5" y="0.0" width="50" height="50"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="placeholderCollectionViewCell" id="sPx-92-CHB" customClass="GalleryCollectionViewCell" customModule="Gallery" customModuleProvider="target">
+                                <rect key="frame" x="91" y="0.0" width="80" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="eNa-I4-Y3f">
-                                            <rect key="frame" x="15" y="15" width="20" height="20"/>
+                                            <rect key="frame" x="30" y="30" width="20" height="20"/>
                                         </activityIndicatorView>
                                     </subviews>
                                 </view>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstItem="eNa-I4-Y3f" firstAttribute="centerY" secondItem="sPx-92-CHB" secondAttribute="centerY" id="7G8-Dj-l6u"/>
-                                    <constraint firstItem="eNa-I4-Y3f" firstAttribute="centerX" secondItem="sPx-92-CHB" secondAttribute="centerX" id="H5s-St-Dro"/>
+                                    <constraint firstItem="eNa-I4-Y3f" firstAttribute="centerY" secondItem="sPx-92-CHB" secondAttribute="centerY" id="2hj-D8-Ej6"/>
+                                    <constraint firstItem="eNa-I4-Y3f" firstAttribute="centerX" secondItem="sPx-92-CHB" secondAttribute="centerX" id="LDR-VE-W9K"/>
                                 </constraints>
-                                <size key="customSize" width="50" height="50"/>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -90,7 +89,80 @@
                     </connections>
                 </pinchGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-335.13909224011712" y="-469.33593749999994"/>
+            <point key="canvasLocation" x="468" y="-26"/>
+        </scene>
+        <!--Root View Controller-->
+        <scene sceneID="i7s-wJ-cQZ">
+            <objects>
+                <tableViewController clearsSelectionOnViewWillAppear="NO" id="yT2-9L-5H0" customClass="GalleryTableViewController" customModule="Gallery" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="BNU-jK-9eL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableViewCell" textLabel="4ev-qg-e8e" style="IBUITableViewCellStyleDefault" id="3fW-2O-Nqg">
+                                <rect key="frame" x="0.0" y="28" width="375" height="52"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3fW-2O-Nqg" id="baU-ik-NGq">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="51.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4ev-qg-e8e">
+                                            <rect key="frame" x="16" y="0.0" width="343" height="51.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="daf-vw-uE6" kind="showDetail" identifier="chooseGallery" id="lZP-nb-Rp9"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="yT2-9L-5H0" id="2II-fv-5za"/>
+                            <outlet property="delegate" destination="yT2-9L-5H0" id="3kL-Pb-4hj"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="Wep-ol-W5x"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zgj-BT-KiX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="468" y="-928"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Y3P-Os-kOt">
+            <objects>
+                <navigationController id="5zP-WW-aia" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="n5J-qG-yvd">
+                        <rect key="frame" x="0.0" y="24" width="375" height="50"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="yT2-9L-5H0" kind="relationship" relationship="rootViewController" id="B5l-bL-FWk"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Qv-oF-lHi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-264" y="-928"/>
+        </scene>
+        <!--Split View Controller-->
+        <scene sceneID="aW8-2L-6XT">
+            <objects>
+                <splitViewController id="TEh-sC-kgE" sceneMemberID="viewController">
+                    <connections>
+                        <segue destination="5zP-WW-aia" kind="relationship" relationship="masterViewController" id="KNZ-xP-pNY"/>
+                        <segue destination="daf-vw-uE6" kind="relationship" relationship="detailViewController" id="1QO-3r-TJf"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ur3-Uy-TFn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1026" y="-490"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="lZP-nb-Rp9"/>
+    </inferredMetricsTieBreakers>
 </document>
