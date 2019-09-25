@@ -146,6 +146,11 @@ class GalleryCollectionViewController: UICollectionViewController, UICollectionV
                         data.insert(cellData, at: destinationIndexPath.item)
                         collectionView.deleteItems(at: [sourceIndexPath])
                         collectionView.insertItems(at: [destinationIndexPath])
+                        if let galleryTableViewController = (splitViewController?.viewControllers.first as? UINavigationController)?.topViewController as? GalleryTableViewController {
+                            if let tableViewIndexPath = galleryTableViewController.tableView.indexPathForSelectedRow {
+                                galleryTableViewController.galleries[tableViewIndexPath.section][tableViewIndexPath.row].data = data
+                            }
+                        }
                     })
                     coordinator.drop(item.dragItem, toItemAt: destinationIndexPath)
                 }
@@ -161,8 +166,13 @@ class GalleryCollectionViewController: UICollectionViewController, UICollectionV
                         DispatchQueue.main.async {
                             let placeholderContext = coordinator.drop(item.dragItem, to: UICollectionViewDropPlaceholder(insertionIndexPath: destinationIndexPath, reuseIdentifier: "placeholderCollectionViewCell"))
                             if let url = provider as? URL {
-                                placeholderContext.commitInsertion(dataSourceUpdates: { insertionIndexPath in
+                                placeholderContext.commitInsertion(dataSourceUpdates: { [unowned self] insertionIndexPath in
                                     self.data.insert((url.imageURL, Double(aspectRatio)), at: insertionIndexPath.item)
+                                    if let galleryTableViewController = (self.splitViewController?.viewControllers.first as? UINavigationController)?.topViewController as? GalleryTableViewController {
+                                        if let tableViewIndexPath = galleryTableViewController.tableView.indexPathForSelectedRow {
+                                            galleryTableViewController.galleries[tableViewIndexPath.section][tableViewIndexPath.row].data = self.data
+                                        }
+                                    }
                                 })
                             } else {
                                 placeholderContext.deletePlaceholder()

@@ -9,9 +9,7 @@
 import UIKit
 
 class GalleryTableViewController: UITableViewController {
-    private var galleries: [[(name: String, data: [(url: URL, aspectRatio: Double)])]] = [[("One", []), ("Two", []), ("Three", [])], []]
-    private var lastSeguedToIndexPath: IndexPath?
-    private var lastSeguedToGalleryCollectionViewController: GalleryCollectionViewController?
+    var galleries: [[(name: String, data: [(url: URL, aspectRatio: Double)])]] = [[("One", []), ("Two", []), ("Three", [])], []]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -131,12 +129,7 @@ class GalleryTableViewController: UITableViewController {
                 if let indexPath = tableView.indexPath(for: tableViewCell) {
                     if indexPath.section == 0 {
                         if let galleryCollectionViewController = segue.destination as? GalleryCollectionViewController {
-                            if let previousIndexPath = lastSeguedToIndexPath, let previousGalleryCollectionViewController = lastSeguedToGalleryCollectionViewController {
-                                galleries[previousIndexPath.section][previousIndexPath.row].data = previousGalleryCollectionViewController.data
-                            }
                             galleryCollectionViewController.data = galleries[indexPath.section][indexPath.row].data
-                            lastSeguedToIndexPath = indexPath
-                            lastSeguedToGalleryCollectionViewController = galleryCollectionViewController
                         }
                     }
                 }
