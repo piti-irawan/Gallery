@@ -156,13 +156,13 @@ class GalleryCollectionViewController: UICollectionViewController, UICollectionV
                         ratio = image.size.width / image.size.height
                     }
                 }
-                item.dragItem.itemProvider.loadObject(ofClass: NSURL.self) { [weak self] (provider, error) in
+                item.dragItem.itemProvider.loadObject(ofClass: NSURL.self) { [unowned self] (provider, error) in
                     if let aspectRatio = ratio {
                         DispatchQueue.main.async {
                             let placeholderContext = coordinator.drop(item.dragItem, to: UICollectionViewDropPlaceholder(insertionIndexPath: destinationIndexPath, reuseIdentifier: "placeholderCollectionViewCell"))
                             if let url = provider as? URL {
                                 placeholderContext.commitInsertion(dataSourceUpdates: { insertionIndexPath in
-                                    self?.data.insert((url.imageURL, Double(aspectRatio)), at: insertionIndexPath.item)
+                                    self.data.insert((url.imageURL, Double(aspectRatio)), at: insertionIndexPath.item)
                                 })
                             } else {
                                 placeholderContext.deletePlaceholder()
