@@ -9,7 +9,7 @@
 import UIKit
 
 class GalleryCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDragDelegate, UICollectionViewDropDelegate {
-    private var cellWidth = 200.0
+    private var cellWidth = 160.0
     var data = [(url: URL, aspectRatio: Double)]()
     var performDropHandler: (([(url: URL, aspectRatio: Double)]) -> Void)?
 
