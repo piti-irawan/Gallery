@@ -8,6 +8,21 @@
 
 import UIKit
 
-class TextFieldTableViewCell: UITableViewCell {
-    @IBOutlet weak var textField: UITextField!
+class TextFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
+    @IBOutlet weak var textField: UITextField! {
+        didSet {
+            textField.delegate = self
+        }
+    }
+    
+    var textFieldDidEndEditingHandler: (() -> Void)?
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textFieldDidEndEditingHandler?()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }

@@ -11,6 +11,7 @@ import UIKit
 class GalleryCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDragDelegate, UICollectionViewDropDelegate {
     private var cellWidth = 200.0
     var data = [(url: URL, aspectRatio: Double)]()
+    var performDropHandler: (([(url: URL, aspectRatio: Double)]) -> Void)?
 
     private var flowLayout: UICollectionViewFlowLayout? {
         return collectionView?.collectionViewLayout as? UICollectionViewFlowLayout
@@ -144,11 +145,7 @@ class GalleryCollectionViewController: UICollectionViewController, UICollectionV
                         data.insert(cellData, at: destinationIndexPath.item)
                         collectionView.deleteItems(at: [sourceIndexPath])
                         collectionView.insertItems(at: [destinationIndexPath])
-                        if let galleryTableViewController = (splitViewController?.viewControllers.first as? UINavigationController)?.topViewController as? GalleryTableViewController {
-                            if let tableViewIndexPath = galleryTableViewController.tableView.indexPathForSelectedRow {
-                                galleryTableViewController.galleries[tableViewIndexPath.section][tableViewIndexPath.row].data = data
-                            }
-                        }
+                        performDropHandler?(data)
                     })
                     coordinator.drop(item.dragItem, toItemAt: destinationIndexPath)
                 }
@@ -166,11 +163,7 @@ class GalleryCollectionViewController: UICollectionViewController, UICollectionV
                             if let url = provider as? URL {
                                 placeholderContext.commitInsertion(dataSourceUpdates: { [unowned self] insertionIndexPath in
                                     self.data.insert((url.imageURL, Double(aspectRatio)), at: insertionIndexPath.item)
-                                    if let galleryTableViewController = (self.splitViewController?.viewControllers.first as? UINavigationController)?.topViewController as? GalleryTableViewController {
-                                        if let tableViewIndexPath = galleryTableViewController.tableView.indexPathForSelectedRow {
-                                            galleryTableViewController.galleries[tableViewIndexPath.section][tableViewIndexPath.row].data = self.data
-                                        }
-                                    }
+                                    self.performDropHandler?(self.data)
                                 })
                             } else {
                                 placeholderContext.deletePlaceholder()

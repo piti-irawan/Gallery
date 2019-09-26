@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GalleryTableViewController: UITableViewController, UITextFieldDelegate {
+class GalleryTableViewController: UITableViewController {
     var galleries: [[(name: String, data: [(url: URL, aspectRatio: Double)])]] = [[("One", []), ("Two", []), ("Three", [])], []]
     var cellBeingEdited: TextFieldTableViewCell?
 
@@ -66,9 +66,23 @@ class GalleryTableViewController: UITableViewController, UITextFieldDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "textFieldTableViewCell", for: indexPath)
         if let textFieldTableViewCell = cell as? TextFieldTableViewCell {
             textFieldTableViewCell.textField.text = galleries[indexPath.section][indexPath.row].name
-            textFieldTableViewCell.textField.delegate = self
+            textFieldTableViewCell.textFieldDidEndEditingHandler = { [unowned self] in
+                self.updateGalleryName()
+            }
         }
         return cell
+    }
+    
+    private func updateGalleryName() {
+        if let cell = cellBeingEdited {
+            if let indexPath = tableView.indexPath(for: cell) {
+                if let text = cell.textField.text {
+                    galleries[indexPath.section][indexPath.row].name = text
+                    cell.textField.isEnabled = false
+                    cellBeingEdited = nil
+                }
+            }
+        }
     }
 
     /*
@@ -157,29 +171,6 @@ class GalleryTableViewController: UITableViewController, UITextFieldDelegate {
         }
     }
     
-    // MARK: - UITextFieldDelegate
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        updateGalleryName()
-    }
-    
-    private func updateGalleryName() {
-        if let cell = cellBeingEdited {
-            if let indexPath = tableView.indexPath(for: cell) {
-                if let text = cell.textField.text {
-                    galleries[indexPath.section][indexPath.row].name = text
-                    cell.textField.isEnabled = false
-                    cellBeingEdited = nil
-                }
-            }
-        }
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -192,6 +183,11 @@ class GalleryTableViewController: UITableViewController, UITextFieldDelegate {
                     if indexPath.section == 0 {
                         if let galleryCollectionViewController = (segue.destination as? UINavigationController)?.topViewController as? GalleryCollectionViewController {
                             galleryCollectionViewController.data = galleries[indexPath.section][indexPath.row].data
+                            galleryCollectionViewController.performDropHandler = { [unowned self] data in
+                                if let IndexPathForSelectedRow = self.tableView.indexPathForSelectedRow {
+                                    self.galleries[IndexPathForSelectedRow.section][IndexPathForSelectedRow.row].data = data
+                                }
+                            }
                         }
                     }
                 }
